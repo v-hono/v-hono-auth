@@ -1,5 +1,5 @@
-import hono
-import hono_auth
+import meiseayoung.hono
+import meiseayoung.hono_auth
 import net.http
 import rand
 import time

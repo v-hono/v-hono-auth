@@ -1,4 +1,4 @@
-# hono.auth
+# meiseayoung.hono_auth
 
 Authentication and authorization library for v-hono-core framework.
 
@@ -13,8 +13,8 @@ Authentication and authorization library for v-hono-core framework.
 ## Installation
 
 ```bash
-v install hono
-v install hono.auth
+v install meiseayoung.hono
+v install meiseayoung.hono_auth
 ```
 
 ## Usage
@@ -22,22 +22,22 @@ v install hono.auth
 ### JWT Authentication
 
 ```v
-import hono
-import hono.auth
-import hono.middleware
+import meiseayoung.hono
+import meiseayoung.hono_auth
+import meiseayoung.hono_middleware
 
 fn main() {
     mut app := hono.Hono.new()
     secret := 'your-secret-key'
 
     // Protect routes with JWT middleware
-    app.use('/api/*', auth.jwt_middleware(auth.JwtOptions{
+    app.use('/api/*', hono_auth.jwt_middleware(hono_auth.JwtOptions{
         secret: secret
         alg: .hs256
     }))
 
     app.get('/api/profile', fn (mut c hono.Context) http.Response {
-        payload := auth.get_jwt_payload(c) or {
+        payload := hono_auth.get_jwt_payload(c) or {
             return c.json('{"error":"No JWT payload"}')
         }
         return c.json('{"user":"${payload.sub}"}')
@@ -50,13 +50,13 @@ fn main() {
 ### Bearer Token Authentication
 
 ```v
-import hono
-import hono.auth
+import meiseayoung.hono
+import meiseayoung.hono_auth
 
 fn main() {
     mut app := hono.Hono.new()
 
-    app.use('/api/*', auth.bearer_auth(auth.BearerAuthOptions{
+    app.use('/api/*', hono_auth.bearer_auth(hono_auth.BearerAuthOptions{
         token: 'your-api-token'
     }))
 
@@ -70,8 +70,8 @@ fn main() {
 
 ## Dependencies
 
-- `hono` - Core framework
-- `hono.middleware` - Cookie support for JWT
+- `meiseayoung.hono` - Core framework
+- `meiseayoung.hono_middleware` - Cookie support for JWT
 
 ## License
 

@@ -1,6 +1,6 @@
 module hono_auth
 
-import hono
+import meiseayoung.hono
 import net.http
 
 // BearerToken 类型 - 支持单 token 或多 token 配置

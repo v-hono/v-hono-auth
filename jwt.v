@@ -1,7 +1,7 @@
 module hono_auth
 
-import hono
-import hono_middleware
+import meiseayoung.hono
+import meiseayoung.hono_middleware
 import crypto.sha256
 import crypto.sha512
 import encoding.base64

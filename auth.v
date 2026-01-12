@@ -1,6 +1,6 @@
 module hono_auth
 
-import hono
+import meiseayoung.hono
 import crypto.sha256
 import crypto.rand
 import time

@@ -1,6 +1,6 @@
 module hono_auth
 
-import hono
+import meiseayoung.hono
 import x.json2
 import net.http
 
