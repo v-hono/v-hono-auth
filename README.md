@@ -1,0 +1,78 @@
+# hono.auth
+
+Authentication and authorization library for v-hono-core framework.
+
+## Features
+
+- JWT (JSON Web Token) authentication with HS256/384/512 algorithms
+- Bearer token authentication
+- User session management
+- Role-based permission system
+- Menu/permission tree building
+
+## Installation
+
+```bash
+v install hono
+v install hono.auth
+```
+
+## Usage
+
+### JWT Authentication
+
+```v
+import hono
+import hono.auth
+import hono.middleware
+
+fn main() {
+    mut app := hono.Hono.new()
+    secret := 'your-secret-key'
+
+    // Protect routes with JWT middleware
+    app.use('/api/*', auth.jwt_middleware(auth.JwtOptions{
+        secret: secret
+        alg: .hs256
+    }))
+
+    app.get('/api/profile', fn (mut c hono.Context) http.Response {
+        payload := auth.get_jwt_payload(c) or {
+            return c.json('{"error":"No JWT payload"}')
+        }
+        return c.json('{"user":"${payload.sub}"}')
+    })
+
+    app.listen(':3000')
+}
+```
+
+### Bearer Token Authentication
+
+```v
+import hono
+import hono.auth
+
+fn main() {
+    mut app := hono.Hono.new()
+
+    app.use('/api/*', auth.bearer_auth(auth.BearerAuthOptions{
+        token: 'your-api-token'
+    }))
+
+    app.get('/api/data', fn (mut c hono.Context) http.Response {
+        return c.json('{"data":"protected"}')
+    })
+
+    app.listen(':3000')
+}
+```
+
+## Dependencies
+
+- `hono` - Core framework
+- `hono.middleware` - Cookie support for JWT
+
+## License
+
+MIT
