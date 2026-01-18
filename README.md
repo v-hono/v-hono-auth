@@ -1,4 +1,4 @@
-# meiseayoung.hono_auth
+# hono_auth
 
 Authentication and authorization library for v-hono-core framework.
 
@@ -13,8 +13,8 @@ Authentication and authorization library for v-hono-core framework.
 ## Installation
 
 ```bash
-v install meiseayoung.hono
-v install meiseayoung.hono_auth
+v install --git https://github.com/v-hono/v-hono-core
+v install --git https://github.com/v-hono/v-hono-auth
 ```
 
 ## Usage
@@ -22,9 +22,9 @@ v install meiseayoung.hono_auth
 ### JWT Authentication
 
 ```v
-import meiseayoung.hono
-import meiseayoung.hono_auth
-import meiseayoung.hono_middleware
+import hono
+import hono_auth
+import hono_middleware
 
 fn main() {
     mut app := hono.Hono.new()
@@ -50,8 +50,8 @@ fn main() {
 ### Bearer Token Authentication
 
 ```v
-import meiseayoung.hono
-import meiseayoung.hono_auth
+import hono
+import hono_auth
 
 fn main() {
     mut app := hono.Hono.new()
@@ -70,8 +70,8 @@ fn main() {
 
 ## Dependencies
 
-- `meiseayoung.hono` - Core framework
-- `meiseayoung.hono_middleware` - Cookie support for JWT
+- `hono` - Core framework
+- `hono_middleware` - Cookie support for JWT
 
 ## License
 
